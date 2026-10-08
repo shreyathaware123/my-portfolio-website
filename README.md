@@ -1,4 +1,8 @@
-# Shreya Thaware — Portfolio
-Business Analyst | Performance Reporting | KPI Dashboards
+# Shreya Thaware — Portfolio Website
 
-🔗 [View Live Site](https://shreyathaware123.github.io/my-portfolio-website/)
+**Business Analyst** · Performance Reporting · KPI Dashboards · Excel & Google Sheets
+
+📍 Bangalore, India · 💼 Immediate joiner · 🎓 B.Tech CSE
+
+🔗 **[View Live Portfolio](https://shreyathaware123.github.io/my-portfolio-website/)**
+
