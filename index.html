@@ -84,7 +84,6 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
 .section--tight{ padding:64px 0; }
 .section--alt{ background:var(--surface); border-block:1px solid var(--line-2); }
 
-/* Bigger, bolder section headings (matches descriptive h2 size) */
 .eyebrow{
   display:inline-flex; align-items:center; gap:14px;
   font-size:clamp(1.6rem, 3.2vw, 2.15rem);
@@ -200,7 +199,7 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
 .mobile-menu .btn{ width:100%; margin-top:14px; }
 
 /* ============================================================
-   5. HERO  (text left / photo right)
+   5. HERO
    ============================================================ */
 .hero{
   position:relative; overflow:hidden;
@@ -259,15 +258,20 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
 
 .hero-actions{ margin-top:28px; display:flex; flex-wrap:wrap; gap:11px; }
 
+/* Hero meta — clean text with small colored dots (no SVG icons) */
 .hero-meta{
   margin-top:24px; padding-top:22px; border-top:1px solid var(--line-2);
   display:flex; flex-wrap:wrap; gap:10px 26px;
 }
 .hero-meta li{
-  display:flex; align-items:center; gap:8px;
+  display:flex; align-items:center; gap:10px;
   font-size:13.5px; color:var(--muted); font-weight:550;
 }
-.hero-meta svg{ width:15px; height:15px; color:var(--accent); flex-shrink:0; }
+.hero-meta li::before{
+  content:''; width:6px; height:6px; border-radius:50%;
+  background:linear-gradient(140deg,var(--accent),var(--teal));
+  flex-shrink:0;
+}
 
 /* Hero photo */
 .hero-photo{
@@ -317,7 +321,7 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
 }
 
 /* ============================================================
-   5b. PROFILE STRIP (moved below hero)
+   5b. PROFILE STRIP
    ============================================================ */
 .profile-strip{
   position:relative;
@@ -390,6 +394,29 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
   display:grid;
   gap:9px;
   min-width:170px;
+}
+
+/* ============================================================
+   5c. SNAPSHOT STRIP (icon-free — clean text)
+   ============================================================ */
+.snapshot{
+  position:relative; z-index:1;
+  border-top:1px solid var(--line-2);
+  background:var(--surface);
+}
+.snapshot-grid{
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:1px; background:var(--line-2);
+}
+.snapshot-item{
+  background:var(--surface); padding:26px 22px;
+}
+.snapshot-item dt{
+  font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted-2); margin-bottom:6px;
+}
+.snapshot-item dd{
+  margin:0; font-size:14px; font-weight:650; color:var(--ink); line-height:1.5;
 }
 
 /* ============================================================
@@ -545,7 +572,7 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
 .skill-list li:hover{ background:var(--surface-2); border-color:#D8E3F2; }
 
 /* ============================================================
-   9. PROJECTS  (3 top + 2 centered below)
+   9. PROJECTS
    ============================================================ */
 .projects-row{
   display:grid;
@@ -878,7 +905,7 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
 <main id="top">
 
   <!-- ============================================================
-       HERO — text left / photo right
+       HERO
        ============================================================ -->
   <section class="hero">
     <div class="wrap">
@@ -915,18 +942,9 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
           </div>
 
           <ul class="hero-meta">
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Bangalore, India · Onsite / Remote / Hybrid / WFH
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Immediate joiner · Full-time only
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
-              B.Tech — Computer Science &amp; Engineering
-            </li>
+            <li>Bangalore, India · Onsite / Remote / Hybrid / WFH</li>
+            <li>Immediate joiner · Full-time only</li>
+            <li>B.Tech — Computer Science &amp; Engineering</li>
           </ul>
         </div>
 
@@ -946,7 +964,7 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
   </section>
 
   <!-- ============================================================
-       PROFILE STRIP (moved below hero)
+       PROFILE STRIP
        ============================================================ -->
   <section class="profile-strip" aria-label="Profile at a glance">
     <div class="wrap">
@@ -995,38 +1013,26 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
   </section>
 
   <!-- ============================================================
-       SNAPSHOT
+       SNAPSHOT (icon-free)
        ============================================================ -->
   <section class="snapshot" aria-label="Recruiter quick facts">
     <div class="wrap" style="padding-inline:0;">
       <dl class="snapshot-grid">
         <div class="snapshot-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <div>
-            <dt>Location</dt>
-            <dd>Bangalore, India<br />Onsite · Remote · Hybrid · WFH</dd>
-          </div>
+          <dt>Location</dt>
+          <dd>Bangalore, India<br />Onsite · Remote · Hybrid · WFH</dd>
         </div>
         <div class="snapshot-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          <div>
-            <dt>Experience</dt>
-            <dd>3 Internships<br />20+ Projects Delivered</dd>
-          </div>
+          <dt>Experience</dt>
+          <dd>3 Internships<br />20+ Projects Delivered</dd>
         </div>
         <div class="snapshot-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <div>
-            <dt>Availability</dt>
-            <dd>Immediate joiner<br />Full-time roles only</dd>
-          </div>
+          <dt>Availability</dt>
+          <dd>Immediate joiner<br />Full-time roles only</dd>
         </div>
         <div class="snapshot-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-          <div>
-            <dt>Education</dt>
-            <dd>B.Tech — CSE<br />CGPA 8.13 / 10</dd>
-          </div>
+          <dt>Education</dt>
+          <dd>B.Tech — CSE<br />CGPA 8.13 / 10</dd>
         </div>
       </dl>
     </div>
@@ -1349,7 +1355,7 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
   </section>
 
   <!-- ============================================================
-       PROJECTS — 3 top / 2 centered
+       PROJECTS
        ============================================================ -->
   <section class="section section--alt" id="projects">
     <div class="wrap">
@@ -1359,7 +1365,6 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
         <p>A selection of my strongest work — each one took a business question from raw data to a stakeholder-ready recommendation.</p>
       </div>
 
-      <!-- Row 1: 3 projects -->
       <div class="projects-row projects-row--top">
 
         <article class="project reveal">
@@ -1418,7 +1423,6 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
 
       </div>
 
-      <!-- Row 2: 2 projects, centered -->
       <div class="projects-row projects-row--bottom">
 
         <article class="project reveal">
@@ -1470,7 +1474,7 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
   </section>
 
   <!-- ============================================================
-       EDUCATION & CERTIFICATIONS (with Drive links)
+       EDUCATION & CERTIFICATIONS
        ============================================================ -->
   <section class="section" id="education">
     <div class="wrap">
