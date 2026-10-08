@@ -51,6 +51,7 @@
    ============================================================ */
 *,*::before,*::after{ box-sizing:border-box; }
 html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+html, body{ overflow-x: hidden; max-width: 100%; }
 body{
   margin:0;
   font-family:var(--font);
@@ -258,7 +259,6 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
 
 .hero-actions{ margin-top:28px; display:flex; flex-wrap:wrap; gap:11px; }
 
-/* Hero meta — clean text with small colored dots (no SVG icons) */
 .hero-meta{
   margin-top:24px; padding-top:22px; border-top:1px solid var(--line-2);
   display:flex; flex-wrap:wrap; gap:10px 26px;
@@ -273,7 +273,6 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
   flex-shrink:0;
 }
 
-/* Hero photo */
 .hero-photo{
   position:relative;
   display:flex;
@@ -397,7 +396,7 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
 }
 
 /* ============================================================
-   5c. SNAPSHOT STRIP (icon-free — clean text)
+   5c. SNAPSHOT STRIP
    ============================================================ */
 .snapshot{
   position:relative; z-index:1;
@@ -808,6 +807,7 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
   .projects-row--top{ grid-template-columns:repeat(2,1fr); }
   .projects-row--bottom{ flex-wrap:wrap; }
   .projects-row--bottom .project{ flex: 0 0 calc((100% - 20px) / 2); max-width:calc((100% - 20px) / 2); }
+  .snapshot-grid{ grid-template-columns:repeat(2,1fr); }
   .contact-grid{ grid-template-columns:repeat(2,1fr); gap:30px 22px; }
 }
 @media (max-width: 860px){
@@ -820,11 +820,24 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
   .skill-card--wide{ grid-column:auto; }
 }
 @media (max-width: 620px){
+  .nav-inner{ padding-inline:14px; gap:10px; }
+  .brand{ gap:8px; }
+  .brand-mark{ width:32px; height:32px; font-size:12px; border-radius:9px; }
+  .brand-name{ font-size:13px; }
+  .brand-role{ font-size:9.5px; }
+  .nav-cta{ gap:6px; }
+  .nav-cta .btn{ padding:8px 12px; font-size:12px; }
+  .nav-cta .btn svg{ width:12px; height:12px; }
+  .nav-toggle{ width:36px; height:36px; }
+  .nav-toggle svg{ width:16px; height:16px; }
+}
+@media (max-width: 620px){
   .wrap{ padding-inline:18px; }
   .hero{ padding-top:calc(var(--nav-h) + 40px); }
   .hero-photo-inner{ max-width:100%; }
   .profile-strip-stats{ grid-template-columns:1fr 1fr; }
   .profile-strip-actions{ grid-template-columns:1fr; }
+  .snapshot-grid{ grid-template-columns:1fr; }
   .projects-row--top{ grid-template-columns:1fr; }
   .projects-row--bottom .project{ flex: 0 0 100%; max-width:100%; }
   .contact-grid{ grid-template-columns:1fr; }
@@ -948,7 +961,6 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
           </ul>
         </div>
 
-        <!-- Photo -->
         <aside class="hero-photo" aria-label="Portrait of Shreya Thaware">
           <div class="hero-photo-inner">
             <img src="./shreya-photo.png" alt="Shreya Thaware — Business Analyst" />
@@ -1013,7 +1025,7 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
   </section>
 
   <!-- ============================================================
-       SNAPSHOT (icon-free)
+       SNAPSHOT
        ============================================================ -->
   <section class="snapshot" aria-label="Recruiter quick facts">
     <div class="wrap" style="padding-inline:0;">
@@ -1738,4 +1750,3 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
 
 </body>
 </html>
-
