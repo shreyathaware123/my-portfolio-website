@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Shreya Thaware — Business Analyst | KPI Dashboards & Performance Reporting</title>
+<meta name="description" content="Shreya Thaware — Business Analyst with 3 internships and 20+ projects in KPI dashboards, MIS reporting, and trend analysis. Targeting full-time Business Analyst, Reporting & BI, and Analytics roles in Bangalore." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   1. DESIGN TOKENS
+   ============================================================ */
+:root{
+  --ink:        #0B1220;
+  --ink-2:      #1E293B;
+  --muted:      #5A6B85;
+  --muted-2:    #8494AC;
+  --line:       #E4EAF3;
+  --line-2:     #EFF3F9;
+  --bg:         #FFFFFF;
+  --surface:    #F7FAFD;
+  --surface-2:  #F1F6FC;
+
+  --accent:     #2563EB;
+  --accent-ink: #1D4ED8;
+  --accent-soft:#EAF1FE;
+  --teal:       #0D9488;
+  --teal-soft:  #E6F6F4;
+
+  --radius-sm:  10px;
+  --radius:     16px;
+  --radius-lg:  22px;
+
+  --shadow-sm: 0 1px 2px rgba(16,32,64,.06), 0 1px 3px rgba(16,32,64,.04);
+  --shadow-md: 0 12px 32px -14px rgba(16,32,64,.22);
+  --shadow-lg: 0 30px 60px -30px rgba(16,32,64,.32);
+
+  --maxw: 1120px;
+  --nav-h: 68px;
+
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+}
+
+/* ============================================================
+   2. RESET & BASE
+   ============================================================ */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  margin:0;
+  font-family:var(--font);
+  font-size:16px;
+  line-height:1.65;
+  color:var(--ink-2);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+ul{ margin:0; padding:0; list-style:none; }
+h1,h2,h3,h4{ margin:0; color:var(--ink); line-height:1.2; letter-spacing:-.02em; font-weight:700; }
+p{ margin:0; }
+button{ font:inherit; cursor:pointer; border:0; background:none; }
+::selection{ background:#CFE0FF; color:var(--ink); }
+
+:focus-visible{
+  outline:3px solid rgba(37,99,235,.45);
+  outline-offset:3px;
+  border-radius:6px;
+}
+
+/* ============================================================
+   3. LAYOUT HELPERS
+   ============================================================ */
+.wrap{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:24px; }
+section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
+.section{ padding:88px 0; }
+.section--tight{ padding:64px 0; }
+.section--alt{ background:var(--surface); border-block:1px solid var(--line-2); }
+
+/* Bigger, bolder section headings (matches descriptive h2 size) */
+.eyebrow{
+  display:inline-flex; align-items:center; gap:14px;
+  font-size:clamp(1.6rem, 3.2vw, 2.15rem);
+  font-weight:700;
+  letter-spacing:-.03em;
+  color:var(--ink);
+  margin-bottom:14px;
+  text-transform:none;
+}
+.eyebrow::before{
+  content:''; width:36px; height:3px; border-radius:2px;
+  background:linear-gradient(90deg,var(--accent),var(--teal));
+  flex-shrink:0;
+}
+.section-head{ max-width:660px; margin-bottom:44px; }
+.section-head h2{ font-size:clamp(1.6rem, 3.2vw, 2.15rem); letter-spacing:-.03em; }
+.section-head p{ margin-top:12px; color:var(--muted); font-size:1.02rem; }
+
+/* ============================================================
+   4. NAVIGATION
+   ============================================================ */
+.nav{
+  position:fixed; inset:0 0 auto 0; z-index:100;
+  height:var(--nav-h);
+  display:flex; align-items:center;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:saturate(180%) blur(14px);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .25s ease, box-shadow .25s ease, background .25s ease;
+}
+.nav.is-scrolled{
+  border-bottom-color:var(--line);
+  box-shadow:0 6px 24px -18px rgba(16,32,64,.35);
+  background:rgba(255,255,255,.88);
+}
+.nav-inner{
+  width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:24px;
+  display:flex; align-items:center; justify-content:space-between; gap:20px;
+}
+.brand{ display:flex; align-items:center; gap:11px; flex-shrink:0; }
+.brand-mark{
+  width:36px; height:36px; border-radius:11px; flex-shrink:0;
+  display:grid; place-items:center;
+  background:linear-gradient(140deg,#2563EB,#0D9488);
+  color:#fff; font-weight:800; font-size:13.5px; letter-spacing:.02em;
+  box-shadow:0 6px 16px -8px rgba(37,99,235,.9);
+}
+.brand-text{ display:flex; flex-direction:column; line-height:1.15; }
+.brand-name{ font-weight:700; font-size:14.5px; color:var(--ink); letter-spacing:-.01em; }
+.brand-role{ font-size:11px; color:var(--muted-2); font-weight:600; letter-spacing:.04em; text-transform:uppercase; }
+
+.nav-links{ display:flex; align-items:center; gap:2px; }
+.nav-links a{
+  position:relative;
+  padding:8px 13px; border-radius:9px;
+  font-size:13.5px; font-weight:600; color:var(--muted);
+  transition:color .18s ease, background .18s ease;
+}
+.nav-links a:hover{ color:var(--ink); background:var(--surface-2); }
+.nav-links a.is-active{ color:var(--accent-ink); background:var(--accent-soft); }
+
+.nav-cta{ display:flex; align-items:center; gap:9px; flex-shrink:0; }
+
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:10px 17px; border-radius:11px;
+  font-size:13.5px; font-weight:650; letter-spacing:-.005em;
+  transition:transform .16s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
+  white-space:nowrap;
+}
+.btn svg{ width:15px; height:15px; flex-shrink:0; }
+.btn-primary{
+  background:var(--ink); color:#fff;
+  box-shadow:0 8px 20px -12px rgba(11,18,32,.9);
+}
+.btn-primary:hover{ background:#16233C; transform:translateY(-1px); box-shadow:0 14px 26px -14px rgba(11,18,32,.95); }
+.btn-accent{
+  background:var(--accent); color:#fff;
+  box-shadow:0 10px 24px -12px rgba(37,99,235,.95);
+}
+.btn-accent:hover{ background:var(--accent-ink); transform:translateY(-1px); }
+.btn-ghost{
+  background:#fff; color:var(--ink-2); border:1px solid var(--line);
+  box-shadow:var(--shadow-sm);
+}
+.btn-ghost:hover{ border-color:#C9D6E8; background:var(--surface); transform:translateY(-1px); }
+.btn-lg{ padding:13px 22px; font-size:14.5px; border-radius:12px; }
+
+.nav-toggle{
+  display:none; width:40px; height:40px; border-radius:10px;
+  border:1px solid var(--line); background:#fff;
+  place-items:center; color:var(--ink);
+}
+.nav-toggle svg{ width:18px; height:18px; }
+
+.mobile-menu{
+  position:fixed; top:var(--nav-h); left:0; right:0; z-index:99;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+  padding:14px 24px 22px;
+  display:none;
+  box-shadow:var(--shadow-md);
+}
+.mobile-menu.is-open{ display:block; animation:slideDown .22s ease; }
+@keyframes slideDown{ from{ opacity:0; transform:translateY(-8px);} to{opacity:1;transform:none;} }
+.mobile-menu a{
+  display:block; padding:12px 4px; font-weight:600; font-size:15px;
+  color:var(--ink-2); border-bottom:1px solid var(--line-2);
+}
+.mobile-menu a:last-of-type{ border-bottom:0; }
+.mobile-menu .btn{ width:100%; margin-top:14px; }
+
+/* ============================================================
+   5. HERO  (text left / photo right)
+   ============================================================ */
+.hero{
+  position:relative; overflow:hidden;
+  padding:calc(var(--nav-h) + 60px) 0 40px;
+  background:linear-gradient(180deg,#FBFDFF 0%, #FFFFFF 62%);
+}
+.hero::before{
+  content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(720px 420px at 84% -12%, rgba(37,99,235,.13), transparent 62%),
+    radial-gradient(560px 380px at 2% 4%, rgba(13,148,136,.09), transparent 60%);
+}
+.hero-grid{
+  position:relative; z-index:1;
+  display:grid; grid-template-columns:1.2fr .9fr; gap:52px; align-items:center;
+}
+
+.status-pill{
+  display:inline-flex; align-items:center; gap:9px;
+  padding:6px 14px 6px 11px; border-radius:100px;
+  background:#fff; border:1px solid var(--line);
+  font-size:12.5px; font-weight:650; color:var(--ink-2);
+  box-shadow:var(--shadow-sm);
+}
+.dot{
+  width:8px; height:8px; border-radius:50%; background:#16A34A; flex-shrink:0;
+  box-shadow:0 0 0 0 rgba(22,163,74,.55);
+  animation:pulse 2.4s infinite;
+}
+@keyframes pulse{
+  0%{ box-shadow:0 0 0 0 rgba(22,163,74,.5); }
+  70%{ box-shadow:0 0 0 9px rgba(22,163,74,0); }
+  100%{ box-shadow:0 0 0 0 rgba(22,163,74,0); }
+}
+
+.hero h1{
+  margin-top:22px;
+  font-family:var(--font-display);
+  font-size:clamp(2.4rem, 5.4vw, 3.6rem);
+  font-weight:700; letter-spacing:-.035em; line-height:1.05;
+}
+.hero h1 .accent{
+  background:linear-gradient(100deg,#2563EB 0%, #0D9488 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero-role{
+  margin-top:18px; font-size:clamp(1.02rem, 2.1vw, 1.16rem);
+  font-weight:600; color:var(--ink); letter-spacing:-.01em;
+}
+.hero-role span{ color:var(--muted-2); font-weight:500; }
+.hero-lede{
+  margin-top:16px; max-width:60ch;
+  font-size:1.03rem; color:var(--muted); line-height:1.72;
+}
+.hero-lede strong{ color:var(--ink-2); font-weight:650; }
+
+.hero-actions{ margin-top:28px; display:flex; flex-wrap:wrap; gap:11px; }
+
+.hero-meta{
+  margin-top:24px; padding-top:22px; border-top:1px solid var(--line-2);
+  display:flex; flex-wrap:wrap; gap:10px 26px;
+}
+.hero-meta li{
+  display:flex; align-items:center; gap:8px;
+  font-size:13.5px; color:var(--muted); font-weight:550;
+}
+.hero-meta svg{ width:15px; height:15px; color:var(--accent); flex-shrink:0; }
+
+/* Hero photo */
+.hero-photo{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.hero-photo-inner{
+  position:relative;
+  width:100%;
+  max-width:420px;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  background:linear-gradient(140deg,#EAF1FE,#E6F6F4);
+  box-shadow:0 30px 60px -30px rgba(16,32,64,.35);
+  isolation:isolate;
+}
+.hero-photo-inner::before{
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(160deg, rgba(37,99,235,.08), rgba(13,148,136,.06));
+  z-index:1; pointer-events:none;
+}
+.hero-photo-inner img{
+  width:100%;
+  height:auto;
+  display:block;
+  position:relative;
+  z-index:0;
+}
+.hero-photo-badge{
+  position:absolute;
+  left:16px;
+  bottom:16px;
+  z-index:2;
+  display:inline-flex; align-items:center; gap:8px;
+  padding:7px 13px;
+  border-radius:100px;
+  background:rgba(11,18,32,.85);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  color:#fff;
+  font-size:11.5px;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+
+/* ============================================================
+   5b. PROFILE STRIP (moved below hero)
+   ============================================================ */
+.profile-strip{
+  position:relative;
+  z-index:1;
+  padding:0 0 56px;
+  background:linear-gradient(180deg, #FFFFFF 0%, #FBFDFF 100%);
+}
+.profile-strip-card{
+  position:relative;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-lg);
+  padding:30px 34px;
+  display:grid;
+  grid-template-columns: 1.3fr 1.1fr auto;
+  gap:34px;
+  align-items:center;
+  overflow:hidden;
+}
+.profile-strip-card::before{
+  content:'';
+  position:absolute; inset:0 0 auto 0; height:4px;
+  background:linear-gradient(90deg,#2563EB,#0D9488);
+}
+.profile-strip-left{ display:grid; gap:14px; }
+.profile-strip-top{ display:flex; align-items:center; gap:15px; }
+.avatar{
+  width:60px; height:60px; border-radius:16px; flex-shrink:0;
+  display:grid; place-items:center;
+  background:linear-gradient(140deg,#2563EB,#0D9488);
+  color:#fff; font-weight:800; font-size:20px; letter-spacing:.02em;
+  box-shadow:0 12px 26px -14px rgba(37,99,235,.95);
+}
+.profile-strip-top h3{ font-size:1.05rem; letter-spacing:-.02em; }
+.profile-strip-top p{ font-size:12.5px; color:var(--muted-2); font-weight:600; margin-top:2px; }
+
+.profile-tags{ display:flex; flex-wrap:wrap; gap:7px; }
+.tag{
+  padding:5px 11px; border-radius:100px;
+  background:var(--surface-2); border:1px solid var(--line);
+  font-size:11.5px; font-weight:650; color:var(--muted);
+}
+
+.profile-strip-stats{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:16px 24px;
+}
+.profile-strip-stats .stat{ text-align:left; }
+.profile-strip-stats b{
+  display:block;
+  font-size:1.6rem;
+  font-weight:800;
+  color:var(--ink);
+  letter-spacing:-.035em;
+  line-height:1;
+}
+.profile-strip-stats span{
+  display:block;
+  margin-top:5px;
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:var(--muted-2);
+}
+
+.profile-strip-actions{
+  display:grid;
+  gap:9px;
+  min-width:170px;
+}
+
+/* ============================================================
+   6. ABOUT
+   ============================================================ */
+.about-grid{ display:grid; grid-template-columns:1.35fr .95fr; gap:52px; align-items:start; }
+.about-body p{ font-size:1.03rem; color:var(--muted); line-height:1.78; }
+.about-body p + p{ margin-top:16px; }
+.about-body strong{ color:var(--ink-2); font-weight:650; }
+
+.about-highlights{ margin-top:28px; display:grid; gap:12px; }
+.highlight{
+  display:flex; gap:12px; align-items:flex-start;
+  padding:14px 16px; border-radius:var(--radius-sm);
+  background:var(--surface); border:1px solid var(--line-2);
+}
+.highlight svg{ width:17px; height:17px; color:var(--teal); flex-shrink:0; margin-top:3px; }
+.highlight p{ font-size:14px; color:var(--ink-2); line-height:1.6; }
+
+.target-card{
+  background:var(--ink); color:#fff; border-radius:var(--radius-lg);
+  padding:28px; box-shadow:var(--shadow-lg);
+  position:relative; overflow:hidden;
+}
+.target-card::after{
+  content:''; position:absolute; right:-70px; top:-70px; width:220px; height:220px;
+  border-radius:50%; background:radial-gradient(circle, rgba(37,99,235,.55), transparent 68%);
+  pointer-events:none;
+}
+.target-card h3{
+  color:#fff; font-size:1.06rem; letter-spacing:-.02em; position:relative;
+}
+.target-card > p{
+  margin-top:8px; font-size:13px; color:#9FB0C9; position:relative;
+}
+.target-list{ margin-top:20px; display:grid; gap:9px; position:relative; }
+.target-list li{
+  display:flex; align-items:center; gap:11px;
+  padding:11px 14px; border-radius:11px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.09);
+  font-size:13.8px; font-weight:600; color:#E8EEF7;
+  transition:background .18s ease, border-color .18s ease;
+}
+.target-list li:hover{ background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.16); }
+.target-list svg{ width:15px; height:15px; color:#5EEAD4; flex-shrink:0; }
+
+.target-foot{
+  margin-top:22px; padding-top:18px; position:relative;
+  border-top:1px solid rgba(255,255,255,.1);
+  font-size:12.5px; color:#9FB0C9; display:flex; align-items:center; gap:9px;
+}
+
+/* ============================================================
+   7. EXPERIENCE
+   ============================================================ */
+.timeline{ position:relative; display:grid; gap:20px; }
+.timeline::before{
+  content:''; position:absolute; left:11px; top:12px; bottom:12px; width:2px;
+  background:linear-gradient(180deg, var(--accent), var(--teal) 70%, transparent);
+  border-radius:2px; opacity:.3;
+}
+.job{
+  position:relative;
+  margin-left:44px;
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:24px 26px;
+  box-shadow:var(--shadow-sm);
+  transition:box-shadow .24s ease, transform .24s ease, border-color .24s ease;
+}
+.job:hover{ box-shadow:var(--shadow-md); transform:translateY(-2px); border-color:#D2DEEE; }
+.job::before{
+  content:''; position:absolute; left:-39px; top:29px;
+  width:12px; height:12px; border-radius:50%;
+  background:#fff; border:3px solid var(--accent);
+  box-shadow:0 0 0 4px #fff;
+}
+.job:first-child::before{ border-color:var(--teal); }
+
+.job-head{
+  display:flex; justify-content:space-between; align-items:flex-start;
+  gap:18px; flex-wrap:wrap;
+}
+.job-head h3{ font-size:1.1rem; letter-spacing:-.022em; }
+.job-co{
+  margin-top:5px; font-size:13.5px; color:var(--muted); font-weight:600;
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+}
+.job-co .sep{ color:#C6D2E3; }
+.job-date{
+  flex-shrink:0; padding:5px 12px; border-radius:100px;
+  background:var(--accent-soft); color:var(--accent-ink);
+  font-size:11.5px; font-weight:700; letter-spacing:.02em; white-space:nowrap;
+}
+.job-points{ margin-top:16px; display:grid; gap:9px; }
+.job-points li{
+  position:relative; padding-left:19px;
+  font-size:14.2px; color:var(--muted); line-height:1.66;
+}
+.job-points li::before{
+  content:''; position:absolute; left:2px; top:9px;
+  width:5px; height:5px; border-radius:50%; background:#B9C7DC;
+}
+.job-points strong{ color:var(--ink-2); font-weight:650; }
+
+.chips{ margin-top:17px; display:flex; flex-wrap:wrap; gap:7px; }
+.chip{
+  padding:5px 11px; border-radius:8px; font-size:11.5px; font-weight:650;
+  background:var(--surface-2); border:1px solid var(--line); color:var(--muted);
+}
+.chip.metric{
+  background:var(--teal-soft); border-color:#C7EBE6; color:#0B7A70;
+}
+.chip.metric::before{ content:'▲ '; font-size:9px; }
+
+/* ============================================================
+   8. SKILLS
+   ============================================================ */
+.skills-grid{
+  display:grid; grid-template-columns:repeat(2,1fr); gap:18px;
+}
+.skill-card{
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:24px 26px;
+  transition:box-shadow .24s ease, transform .24s ease, border-color .24s ease;
+}
+.skill-card:hover{ box-shadow:var(--shadow-md); transform:translateY(-2px); border-color:#D2DEEE; }
+.skill-card--wide{ grid-column:1 / -1; }
+
+.skill-card-head{
+  display:flex; align-items:center; gap:12px; margin-bottom:17px;
+}
+.skill-icon{
+  width:38px; height:38px; border-radius:11px; flex-shrink:0;
+  display:grid; place-items:center;
+  background:var(--accent-soft); color:var(--accent-ink);
+}
+.skill-icon svg{ width:18px; height:18px; }
+.skill-card:nth-child(2) .skill-icon{ background:var(--teal-soft); color:#0B7A70; }
+.skill-card:nth-child(3) .skill-icon{ background:#F3EEFE; color:#6D3FD4; }
+.skill-card:nth-child(4) .skill-icon{ background:#FEF3E7; color:#C2680A; }
+.skill-card--wide .skill-icon{ background:#E9F7EF; color:#0F8A4D; }
+
+.skill-card h3{ font-size:.98rem; letter-spacing:-.015em; }
+.skill-card-head p{ font-size:11.5px; color:var(--muted-2); font-weight:600; margin-top:2px; }
+.skill-list{ display:flex; flex-wrap:wrap; gap:7px; }
+.skill-list li{
+  padding:6px 12px; border-radius:8px;
+  background:var(--surface); border:1px solid var(--line-2);
+  font-size:12.5px; font-weight:600; color:var(--ink-2);
+  transition:background .16s ease, border-color .16s ease;
+}
+.skill-list li:hover{ background:var(--surface-2); border-color:#D8E3F2; }
+
+/* ============================================================
+   9. PROJECTS  (3 top + 2 centered below)
+   ============================================================ */
+.projects-row{
+  display:grid;
+  gap:20px;
+}
+.projects-row--top{
+  grid-template-columns:repeat(3, 1fr);
+}
+.projects-row--bottom{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-top:20px;
+}
+.projects-row--bottom .project{
+  flex: 0 0 calc((100% - 40px) / 3);
+  max-width: calc((100% - 40px) / 3);
+}
+
+.project{
+  display:flex; flex-direction:column;
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:24px; box-shadow:var(--shadow-sm);
+  transition:box-shadow .26s ease, transform .26s ease, border-color .26s ease;
+}
+.project:hover{ box-shadow:var(--shadow-md); transform:translateY(-3px); border-color:#D2DEEE; }
+.project-top{
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+  margin-bottom:15px;
+}
+.project-type{
+  font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--teal); background:var(--teal-soft);
+  padding:4px 10px; border-radius:6px;
+}
+.project-link{
+  width:30px; height:30px; border-radius:8px; display:grid; place-items:center;
+  color:var(--muted-2); border:1px solid var(--line-2);
+  transition:color .18s ease, border-color .18s ease, background .18s ease;
+}
+.project-link:hover{ color:var(--accent); border-color:#C9DCFA; background:var(--accent-soft); }
+.project-link svg{ width:14px; height:14px; }
+
+.project h3{ font-size:1.02rem; letter-spacing:-.02em; line-height:1.35; }
+.project > p{
+  margin-top:10px; font-size:13.6px; color:var(--muted); line-height:1.65;
+}
+.project-impact{
+  margin-top:15px; padding:11px 13px; border-radius:10px;
+  background:var(--surface); border-left:3px solid var(--teal);
+  font-size:12.8px; font-weight:600; color:var(--ink-2); line-height:1.55;
+}
+.project-impact span{
+  display:block; font-size:10px; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--muted-2); margin-bottom:3px;
+}
+.project-stack{
+  margin-top:auto; padding-top:17px; display:flex; flex-wrap:wrap; gap:6px;
+}
+.project-stack li{
+  font-size:11px; font-weight:650; color:var(--muted-2);
+  padding:3px 9px; border-radius:6px; background:var(--surface-2);
+}
+
+.projects-more{
+  margin-top:36px; text-align:center;
+  padding:32px 28px; border-radius:var(--radius);
+  background:#fff; border:1px dashed #C9D8EC;
+}
+.projects-more p{
+  font-size:14.5px; color:var(--muted); max-width:52ch; margin:0 auto;
+  line-height:1.65;
+}
+.projects-more p strong{ color:var(--ink); font-weight:700; }
+.projects-more .btn{ margin-top:18px; }
+
+/* ============================================================
+   10. EDUCATION & CERTIFICATIONS
+   ============================================================ */
+.edu-grid{ display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:start; }
+
+.edu-item{
+  display:flex; gap:16px; padding-bottom:24px; margin-bottom:24px;
+  border-bottom:1px solid var(--line-2);
+}
+.edu-item:last-child{ border-bottom:0; padding-bottom:0; margin-bottom:0; }
+.edu-icon{
+  width:42px; height:42px; border-radius:12px; flex-shrink:0;
+  display:grid; place-items:center;
+  background:var(--accent-soft); color:var(--accent-ink);
+}
+.edu-icon svg{ width:19px; height:19px; }
+.edu-item h3{ font-size:1.02rem; letter-spacing:-.018em; }
+.edu-item .school{ margin-top:5px; font-size:13.5px; color:var(--muted); font-weight:600; }
+.edu-item .meta{
+  margin-top:9px; display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+}
+.edu-item .meta span{
+  font-size:12px; font-weight:650; color:var(--muted-2);
+  background:var(--surface); border:1px solid var(--line-2);
+  padding:3px 10px; border-radius:7px;
+}
+.edu-item .meta .grade{ background:var(--teal-soft); border-color:#C7EBE6; color:#0B7A70; }
+
+.cert-list{ display:grid; gap:11px; }
+.cert{
+  display:flex; align-items:center; gap:14px;
+  padding:15px 17px; border-radius:var(--radius-sm);
+  background:#fff; border:1px solid var(--line);
+  transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+  cursor:pointer;
+}
+.cert:hover{ border-color:#D2DEEE; box-shadow:var(--shadow-sm); transform:translateX(3px); }
+.cert-badge{
+  width:34px; height:34px; border-radius:10px; flex-shrink:0;
+  display:grid; place-items:center;
+  background:var(--surface-2); color:var(--accent);
+}
+.cert-badge svg{ width:16px; height:16px; }
+.cert h4{ font-size:13.8px; font-weight:650; letter-spacing:-.01em; }
+.cert p{ font-size:12px; color:var(--muted-2); font-weight:600; margin-top:2px; }
+.cert-year{
+  margin-left:auto; flex-shrink:0;
+  font-size:11.5px; font-weight:700; color:var(--muted-2);
+}
+
+/* ============================================================
+   11. CONTACT
+   ============================================================ */
+.contact{
+  position:relative; overflow:hidden;
+  background:var(--ink); color:#fff;
+  padding:88px 0;
+}
+.contact::before{
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(700px 400px at 88% 0%, rgba(37,99,235,.42), transparent 62%),
+    radial-gradient(560px 400px at 4% 100%, rgba(13,148,136,.28), transparent 62%);
+}
+.contact-inner{ position:relative; z-index:1; }
+.contact-head{ max-width:640px; }
+.contact .eyebrow{ color:#fff; }
+.contact .eyebrow::before{ background:linear-gradient(90deg,#7FB0FF,#5EEAD4); }
+.contact h2{
+  color:#fff; font-size:clamp(1.7rem,3.4vw,2.3rem); letter-spacing:-.03em;
+}
+.contact-head p{
+  margin-top:14px; font-size:1.03rem; color:#A9BBD4; line-height:1.7;
+}
+
+.contact-actions{ margin-top:32px; display:flex; flex-wrap:wrap; gap:12px; }
+.btn-light{
+  background:#fff; color:var(--ink);
+  box-shadow:0 14px 30px -16px rgba(0,0,0,.9);
+}
+.btn-light:hover{ background:#EDF3FB; transform:translateY(-1px); }
+.btn-outline{
+  background:rgba(255,255,255,.06); color:#fff;
+  border:1px solid rgba(255,255,255,.22);
+}
+.btn-outline:hover{ background:rgba(255,255,255,.13); border-color:rgba(255,255,255,.38); transform:translateY(-1px); }
+
+.contact-grid{
+  margin-top:52px; padding-top:38px;
+  border-top:1px solid rgba(255,255,255,.12);
+  display:grid; grid-template-columns:repeat(4,1fr); gap:26px;
+}
+.contact-card{ display:flex; gap:13px; align-items:flex-start; }
+.contact-card .ico{
+  width:36px; height:36px; border-radius:10px; flex-shrink:0;
+  display:grid; place-items:center;
+  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12);
+  color:#7FB0FF;
+}
+.contact-card .ico svg{ width:16px; height:16px; }
+.contact-card dt{
+  font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:#7C8FA9; margin-bottom:5px;
+}
+.contact-card dd{
+  margin:0; font-size:13.8px; font-weight:600; color:#E8EEF7;
+  word-break:break-word;
+}
+.contact-card dd a{ transition:color .18s ease; }
+.contact-card dd a:hover{ color:#7FB0FF; }
+
+/* ============================================================
+   12. FOOTER
+   ============================================================ */
+.footer{
+  background:var(--ink); border-top:1px solid rgba(255,255,255,.1);
+  padding:26px 0;
+}
+.footer-inner{
+  display:flex; justify-content:space-between; align-items:center;
+  gap:18px; flex-wrap:wrap;
+}
+.footer p{ font-size:12.5px; color:#7C8FA9; }
+.footer-links{ display:flex; gap:20px; }
+.footer-links a{
+  font-size:12.5px; font-weight:600; color:#9FB0C9;
+  transition:color .18s ease;
+}
+.footer-links a:hover{ color:#fff; }
+
+/* ============================================================
+   13. REVEAL ANIMATION
+   ============================================================ */
+.reveal{
+  opacity:0; transform:translateY(22px);
+  transition:opacity .6s cubic-bezier(.22,.68,.35,1), transform .6s cubic-bezier(.22,.68,.35,1);
+}
+.reveal.in{ opacity:1; transform:none; }
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  .reveal{ opacity:1; transform:none; transition:none; }
+  .dot{ animation:none; }
+  *{ transition-duration:.01ms !important; }
+}
+
+/* ============================================================
+   14. RESPONSIVE
+   ============================================================ */
+@media (max-width: 1000px){
+  .hero-grid{ grid-template-columns:1fr; gap:44px; }
+  .hero-photo{ justify-content:flex-start; }
+  .hero-photo-inner{ max-width:360px; }
+  .profile-strip-card{ grid-template-columns:1fr; gap:26px; }
+  .profile-strip-actions{ grid-template-columns:1fr 1fr; min-width:0; }
+  .about-grid{ grid-template-columns:1fr; gap:36px; }
+  .projects-row--top{ grid-template-columns:repeat(2,1fr); }
+  .projects-row--bottom{ flex-wrap:wrap; }
+  .projects-row--bottom .project{ flex: 0 0 calc((100% - 20px) / 2); max-width:calc((100% - 20px) / 2); }
+  .contact-grid{ grid-template-columns:repeat(2,1fr); gap:30px 22px; }
+}
+@media (max-width: 860px){
+  .nav-links{ display:none; }
+  .nav-cta .btn-ghost{ display:none; }
+  .nav-toggle{ display:grid; }
+  .section{ padding:68px 0; }
+  .edu-grid{ grid-template-columns:1fr; gap:44px; }
+  .skills-grid{ grid-template-columns:1fr; }
+  .skill-card--wide{ grid-column:auto; }
+}
+@media (max-width: 620px){
+  .wrap{ padding-inline:18px; }
+  .hero{ padding-top:calc(var(--nav-h) + 40px); }
+  .hero-photo-inner{ max-width:100%; }
+  .profile-strip-stats{ grid-template-columns:1fr 1fr; }
+  .profile-strip-actions{ grid-template-columns:1fr; }
+  .projects-row--top{ grid-template-columns:1fr; }
+  .projects-row--bottom .project{ flex: 0 0 100%; max-width:100%; }
+  .contact-grid{ grid-template-columns:1fr; }
+  .hero-actions .btn{ flex:1 1 auto; }
+  .job{ padding:20px; margin-left:36px; }
+  .job::before{ left:-31px; }
+  .timeline::before{ left:9px; }
+  .footer-inner{ flex-direction:column; align-items:flex-start; }
+}
+
+/* ============================================================
+   15. PRINT
+   ============================================================ */
+@media print{
+  .nav, .mobile-menu, .hero-actions, .contact-actions, .profile-strip-actions, .footer{ display:none !important; }
+  body{ font-size:11pt; color:#000; }
+  .hero, .section, .contact{ padding:16px 0 !important; background:#fff !important; color:#000 !important; }
+  .contact h2, .contact-head p, .contact-card dd, .target-card h3{ color:#000 !important; }
+  .target-card, .contact{ background:#fff !important; border:1px solid #ccc; }
+  .job, .project, .skill-card, .cert, .profile-strip-card{ box-shadow:none !important; break-inside:avoid; }
+  .reveal{ opacity:1 !important; transform:none !important; }
+  .contact::before, .hero::before, .target-card::after{ display:none; }
+  a{ text-decoration:none; color:#000; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand" aria-label="Shreya Thaware — home">
+      <span class="brand-mark" aria-hidden="true">ST</span>
+      <span class="brand-text">
+        <span class="brand-name">Shreya Thaware</span>
+        <span class="brand-role">Business Analyst</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      <a href="./Shreya-Thaware-Resume.pdf" download class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Resume
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">About</a>
+  <a href="#experience">Experience</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#education">Education</a>
+  <a href="#contact">Contact</a>
+  <a href="./Shreya-Thaware-Resume.pdf" download class="btn btn-primary">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Download Resume
+  </a>
+</div>
+
+<main id="top">
+
+  <!-- ============================================================
+       HERO — text left / photo right
+       ============================================================ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+
+        <div class="hero-copy">
+          <span class="status-pill">
+            <span class="dot" aria-hidden="true"></span>
+            Immediate joiner · Open to full-time roles
+          </span>
+
+          <h1>Shreya Thaware<br /><span class="accent">Business Analyst</span></h1>
+
+          <p class="hero-role">
+            Performance Reporting <span>·</span> KPI Dashboards <span>·</span> Excel &amp; Google Sheets
+          </p>
+
+          <p class="hero-lede">
+            Business Analyst with <strong>3 internships and 20+ projects</strong> in KPI dashboards,
+            MIS reporting, and trend analysis using Excel, Google Sheets, SQL, Power BI, Tableau,
+            and Python. A clear communicator who turns data into <strong>actionable insights</strong>
+            stakeholders actually use.
+          </p>
+
+          <div class="hero-actions">
+            <a href="./Shreya-Thaware-Resume.pdf" download class="btn btn-accent btn-lg">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Resume
+            </a>
+            <a href="mailto:shreyathaware9@gmail.com" class="btn btn-ghost btn-lg">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+              Email me
+            </a>
+          </div>
+
+          <ul class="hero-meta">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Bangalore, India · Onsite / Remote / Hybrid / WFH
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Immediate joiner · Full-time only
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+              B.Tech — Computer Science &amp; Engineering
+            </li>
+          </ul>
+        </div>
+
+        <!-- Photo -->
+        <aside class="hero-photo" aria-label="Portrait of Shreya Thaware">
+          <div class="hero-photo-inner">
+            <img src="./shreya-photo.png" alt="Shreya Thaware — Business Analyst" />
+            <span class="hero-photo-badge">
+              <span class="dot" aria-hidden="true"></span>
+              Available for hire
+            </span>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROFILE STRIP (moved below hero)
+       ============================================================ -->
+  <section class="profile-strip" aria-label="Profile at a glance">
+    <div class="wrap">
+      <div class="profile-strip-card">
+
+        <div class="profile-strip-left">
+          <div class="profile-strip-top">
+            <div class="avatar" aria-hidden="true">ST</div>
+            <div>
+              <h3>Shreya Thaware</h3>
+              <p>Business Analyst · Performance Reporting</p>
+            </div>
+          </div>
+          <div class="profile-tags">
+            <span class="tag">Advanced Excel</span>
+            <span class="tag">Google Sheets</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Power BI</span>
+            <span class="tag">Tableau</span>
+            <span class="tag">Python</span>
+            <span class="tag">MIS Reporting</span>
+            <span class="tag">AI Tools</span>
+          </div>
+        </div>
+
+        <div class="profile-strip-stats">
+          <div class="stat"><b>3</b><span>Internships</span></div>
+          <div class="stat"><b>20+</b><span>Projects</span></div>
+          <div class="stat"><b>10+</b><span>KPI Dashboards</span></div>
+          <div class="stat"><b>6+</b><span>Tools &amp; Languages</span></div>
+        </div>
+
+        <div class="profile-strip-actions">
+          <a href="https://www.linkedin.com/in/shreya-thaware/" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM2.4 21h5.16V9H2.4v12zM9.9 9h4.95v1.64h.07c.69-1.2 2.37-2.46 4.88-2.46 5.22 0 6.18 3.2 6.18 7.36V21h-5.15v-5.9c0-1.4-.03-3.2-2.06-3.2-2.06 0-2.38 1.53-2.38 3.1V21H9.9V9z"/></svg>
+            View LinkedIn
+          </a>
+          <a href="https://github.com/shreyathaware123" target="_blank" rel="noopener" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.7.08-.7 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.75.4-1.27.73-1.56-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+            GitHub
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SNAPSHOT
+       ============================================================ -->
+  <section class="snapshot" aria-label="Recruiter quick facts">
+    <div class="wrap" style="padding-inline:0;">
+      <dl class="snapshot-grid">
+        <div class="snapshot-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>
+            <dt>Location</dt>
+            <dd>Bangalore, India<br />Onsite · Remote · Hybrid · WFH</dd>
+          </div>
+        </div>
+        <div class="snapshot-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          <div>
+            <dt>Experience</dt>
+            <dd>3 Internships<br />20+ Projects Delivered</dd>
+          </div>
+        </div>
+        <div class="snapshot-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div>
+            <dt>Availability</dt>
+            <dd>Immediate joiner<br />Full-time roles only</dd>
+          </div>
+        </div>
+        <div class="snapshot-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <div>
+            <dt>Education</dt>
+            <dd>B.Tech — CSE<br />CGPA 8.13 / 10</dd>
+          </div>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT
+       ============================================================ -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="about-grid">
+
+        <div class="about-body reveal">
+          <span class="eyebrow">About</span>
+          <h2 style="font-size:clamp(1.6rem,3.2vw,2.15rem);letter-spacing:-.03em;">
+            Turning reporting requirements into dashboards people actually use
+          </h2>
+
+          <p style="margin-top:18px;">
+            I'm an early-career <strong>Business Analyst</strong> with a B.Tech in Computer Science
+            &amp; Engineering and <strong>3 internships across data analytics and business analysis</strong>.
+            I've built <strong>10+ KPI dashboards</strong> and delivered reporting that stakeholders
+            rely on for daily decisions.
+          </p>
+
+          <p>
+            I'm now looking for a <strong>full-time Business Analyst / Analytics role in Bangalore</strong>
+            — onsite, hybrid, remote, or work-from-home — where I can keep turning data into decisions.
+          </p>
+
+          <div class="about-highlights">
+            <div class="highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <p><strong>Requirements to delivery.</strong> I gather stakeholder reporting needs, document them clearly, and build the KPI dashboards and MIS reports that fulfil them.</p>
+            </div>
+            <div class="highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <p><strong>Business + technical.</strong> Fluent in stakeholder conversations and in the data stack — no gap between "what" and "how."</p>
+            </div>
+            <div class="highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <p><strong>Clear communicator.</strong> I present insights through ad hoc and executive reports, and translate numbers into recommendations non-technical teams can act on.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="target-card reveal" aria-label="Roles I am targeting">
+          <h3>What I'm looking for</h3>
+          <p>Full-time roles in Bangalore — actively interviewing.</p>
+
+          <ul class="target-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Business Analyst
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Business Analytics Associate
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Reporting &amp; BI Analyst
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Product / Operations Analyst
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              AI Evaluation / AI Quality / AI Analyst
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Data Annotation
+            </li>
+          </ul>
+
+          <div class="target-foot">
+            <span class="dot" aria-hidden="true"></span>
+            Immediate joiner · Full-time only · Bangalore (Onsite / Hybrid / Remote / WFH)
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EXPERIENCE
+       ============================================================ -->
+  <section class="section section--alt" id="experience">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Experience</span>
+        <h2>Internships &amp; measurable impact</h2>
+        <p>Three internships across data analytics and business analysis — each with hands-on KPI reporting, stakeholder work, and real deliverables.</p>
+      </div>
+
+      <div class="timeline">
+
+        <article class="job reveal">
+          <div class="job-head">
+            <div>
+              <h3>Data Analyst — Internship</h3>
+              <p class="job-co">
+                Labmentix
+                <span class="sep">|</span> Bangalore
+              </p>
+            </div>
+            <span class="job-date">Oct 2025 — Apr 2026</span>
+          </div>
+
+          <ul class="job-points">
+            <li>Built <strong>10+ interactive KPI dashboards</strong> in Power BI and Tableau to track key performance metrics and give stakeholders real-time visibility into trends.</li>
+            <li>Cleaned and analysed large business datasets using <strong>Excel, SQL, and Python</strong> to identify trends, improve reporting accuracy, and support business decisions.</li>
+            <li>Gathered stakeholder reporting needs and presented insights through ad hoc and executive reports over Google Meet and Zoom.</li>
+          </ul>
+
+          <div class="chips">
+            <span class="chip metric">10+ KPI dashboards</span>
+            <span class="chip metric">Real-time stakeholder visibility</span>
+            <span class="chip">Power BI</span>
+            <span class="chip">Tableau</span>
+            <span class="chip">SQL</span>
+            <span class="chip">Python</span>
+            <span class="chip">Executive Reporting</span>
+          </div>
+        </article>
+
+        <article class="job reveal">
+          <div class="job-head">
+            <div>
+              <h3>Data Analyst | Business Analyst — Internship</h3>
+              <p class="job-co">
+                Immverse AI
+                <span class="sep">|</span> Nagpur
+              </p>
+            </div>
+            <span class="job-date">Oct 2024 — Apr 2025</span>
+          </div>
+
+          <ul class="job-points">
+            <li>Designed <strong>KPI-driven dashboards and performance reports</strong> to monitor metrics, identify trends, and generate actionable insights for stakeholders.</li>
+            <li>Performed data cleaning, validation, and exploratory data analysis using <strong>SQL, Python, Excel, and Google Sheets</strong> to keep reporting accurate and consistent.</li>
+            <li>Worked with stakeholders over <strong>Slack</strong> to turn requirements into reports, and suggested reporting improvements that the team adopted.</li>
+          </ul>
+
+          <div class="chips">
+            <span class="chip metric">Adopted reporting improvements</span>
+            <span class="chip metric">Consistent, accurate reporting</span>
+            <span class="chip">KPI Dashboards</span>
+            <span class="chip">SQL</span>
+            <span class="chip">Python</span>
+            <span class="chip">Google Sheets</span>
+            <span class="chip">Stakeholder Comms</span>
+          </div>
+        </article>
+
+        <article class="job reveal">
+          <div class="job-head">
+            <div>
+              <h3>Data Analyst | Business Analyst — Internship</h3>
+              <p class="job-co">
+                AnkHub Technology Services
+                <span class="sep">|</span> Nagpur
+              </p>
+            </div>
+            <span class="job-date">Sep 2023 — May 2024</span>
+          </div>
+
+          <ul class="job-points">
+            <li>Prepared, cleaned, and validated large datasets in <strong>Advanced Excel and Google Sheets</strong>, running quality checks that reduced reporting errors.</li>
+            <li>Collaborated with cross-functional teams using <strong>Trello</strong> to plan, assign, and track tasks — improving workflow efficiency and delivery follow-through.</li>
+            <li>Coordinated with clients over calls and email, researched companies and products, and adapted to changing client requirements.</li>
+          </ul>
+
+          <div class="chips">
+            <span class="chip metric">Reduced reporting errors</span>
+            <span class="chip metric">Improved workflow efficiency</span>
+            <span class="chip">Advanced Excel</span>
+            <span class="chip">Google Sheets</span>
+            <span class="chip">Data Validation</span>
+            <span class="chip">Trello</span>
+            <span class="chip">Client Coordination</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SKILLS
+       ============================================================ -->
+  <section class="section" id="skills">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Skills</span>
+        <h2>Business-facing and technical toolkit</h2>
+        <p>Grouped the way hiring managers actually evaluate: can she talk to stakeholders, and can she work the data?</p>
+      </div>
+
+      <div class="skills-grid">
+
+        <article class="skill-card reveal">
+          <div class="skill-card-head">
+            <span class="skill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg>
+            </span>
+            <div>
+              <h3>Analytics &amp; BI</h3>
+              <p>The data stack</p>
+            </div>
+          </div>
+          <ul class="skill-list">
+            <li>Advanced Excel</li>
+            <li>Google Sheets</li>
+            <li>SQL</li>
+            <li>Power BI</li>
+            <li>Tableau</li>
+            <li>Python (Pandas, NumPy, Matplotlib)</li>
+            <li>Power Query</li>
+            <li>Data Cleaning</li>
+            <li>Data Visualization</li>
+          </ul>
+        </article>
+
+        <article class="skill-card reveal">
+          <div class="skill-card-head">
+            <span class="skill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+            </span>
+            <div>
+              <h3>Business Analysis</h3>
+              <p>The "what and why"</p>
+            </div>
+          </div>
+          <ul class="skill-list">
+            <li>KPI &amp; Performance Reporting</li>
+            <li>MIS Reporting</li>
+            <li>Trend &amp; Comparative Analysis</li>
+            <li>Requirement Gathering</li>
+            <li>Stakeholder Communication</li>
+            <li>Dashboard Development</li>
+            <li>Executive Reporting</li>
+            <li>Ad Hoc Analysis</li>
+          </ul>
+        </article>
+
+        <article class="skill-card reveal">
+          <div class="skill-card-head">
+            <span class="skill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </span>
+            <div>
+              <h3>Tools &amp; Platforms</h3>
+              <p>Day-to-day stack</p>
+            </div>
+          </div>
+          <ul class="skill-list">
+            <li>Jira</li>
+            <li>Confluence</li>
+            <li>Draw.io</li>
+            <li>Google Workspace</li>
+            <li>MS Workspace</li>
+            <li>Trello</li>
+            <li>Slack</li>
+            <li>Jupyter Notebook</li>
+            <li>MySQL Workbench</li>
+          </ul>
+        </article>
+
+        <article class="skill-card reveal">
+          <div class="skill-card-head">
+            <span class="skill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </span>
+            <div>
+              <h3>Professional Strengths</h3>
+              <p>How I work with people</p>
+            </div>
+          </div>
+          <ul class="skill-list">
+            <li>Stakeholder Communication</li>
+            <li>Presentation &amp; Storytelling</li>
+            <li>Cross-functional Collaboration</li>
+            <li>Structured Problem Solving</li>
+            <li>Attention to Detail</li>
+            <li>Adaptability</li>
+            <li>Ownership &amp; Follow-through</li>
+            <li>Client Coordination</li>
+          </ul>
+        </article>
+
+        <article class="skill-card skill-card--wide reveal">
+          <div class="skill-card-head">
+            <span class="skill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+            </span>
+            <div>
+              <h3>AI Tools &amp; Productivity</h3>
+              <p>Used daily to speed up analysis, documentation, and reporting</p>
+            </div>
+          </div>
+          <ul class="skill-list">
+            <li>Claude</li>
+            <li>ChatGPT</li>
+            <li>Gemini</li>
+            <li>Perplexity</li>
+            <li>DeepSeek</li>
+            <li>GitHub Copilot</li>
+            <li>AI-assisted Data Analysis</li>
+            <li>Prompt Engineering</li>
+            <li>AI-assisted Documentation</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROJECTS — 3 top / 2 centered
+       ============================================================ -->
+  <section class="section section--alt" id="projects">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Projects</span>
+        <h2>Top 5 projects</h2>
+        <p>A selection of my strongest work — each one took a business question from raw data to a stakeholder-ready recommendation.</p>
+      </div>
+
+      <!-- Row 1: 3 projects -->
+      <div class="projects-row projects-row--top">
+
+        <article class="project reveal">
+          <div class="project-top">
+            <span class="project-type">Dashboard</span>
+            <a href="https://github.com/shreyathaware123/Retail-Sales-Data" target="_blank" rel="noopener" class="project-link" aria-label="View on GitHub">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+          <h3>Retail Sales &amp; Inventory Intelligence System</h3>
+          <p>Analysed sales, inventory, and product data to uncover revenue trends and stock movement patterns across categories and regions.</p>
+          <div class="project-impact">
+            <span>Outcome</span>
+            Built Power BI dashboards tracking sales growth, inventory turnover, and product performance — adopted for recurring review.
+          </div>
+          <ul class="project-stack">
+            <li>SQL</li><li>Excel</li><li>Power BI</li>
+          </ul>
+        </article>
+
+        <article class="project reveal">
+          <div class="project-top">
+            <span class="project-type">Dashboard</span>
+            <a href="https://github.com/shreyathaware123/British-Airlines-CSAT-Dashboard" target="_blank" rel="noopener" class="project-link" aria-label="View on GitHub">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+          <h3>British Airways CSAT Dashboard</h3>
+          <p>Analyzed customer reviews to find satisfaction trends across countries, traveller types, and service categories.</p>
+          <div class="project-impact">
+            <span>Outcome</span>
+            Built a stakeholder-focused Power BI dashboard tracking CSAT KPIs, ratings, and recommendation rate.
+          </div>
+          <ul class="project-stack">
+            <li>Power BI</li><li>Customer Experience Analytics</li>
+          </ul>
+        </article>
+
+        <article class="project reveal">
+          <div class="project-top">
+            <span class="project-type">Analytics</span>
+            <a href="https://github.com/shreyathaware123/-Video-Game-Sales-and-Engagement-Analysis" target="_blank" rel="noopener" class="project-link" aria-label="View on GitHub">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+          <h3>Video Game Sales &amp; Engagement Analysis</h3>
+          <p>Analyzed sales and engagement data to compare performance across genre, platform, publisher, and region.</p>
+          <div class="project-impact">
+            <span>Outcome</span>
+            Built Power BI dashboards highlighting top performers and regional patterns to support business decisions.
+          </div>
+          <ul class="project-stack">
+            <li>SQL</li><li>Python</li><li>Power BI</li>
+          </ul>
+        </article>
+
+      </div>
+
+      <!-- Row 2: 2 projects, centered -->
+      <div class="projects-row projects-row--bottom">
+
+        <article class="project reveal">
+          <div class="project-top">
+            <span class="project-type">Analytics / Advisory</span>
+            <a href="https://github.com/shreyathaware123/Real-Estate-Investment-Advisor" target="_blank" rel="noopener" class="project-link" aria-label="View repository on GitHub">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+          <h3>Real Estate Investment Advisor</h3>
+          <p>Built a data-driven advisor that evaluates property investment opportunities using pricing, location, and market-trend data to surface high-potential options.</p>
+          <div class="project-impact">
+            <span>Outcome</span>
+            Ranks properties by projected return and rental yield, giving users a clear shortlist instead of raw listings.
+          </div>
+          <ul class="project-stack">
+            <li>Python</li><li>Pandas</li><li>SQL</li><li>Data Visualization</li>
+          </ul>
+        </article>
+
+        <article class="project reveal">
+          <div class="project-top">
+            <span class="project-type">Healthcare Analytics</span>
+            <a href="https://github.com/shreyathaware123/Healthcare-Analytics-Project" target="_blank" rel="noopener" class="project-link" aria-label="View repository on GitHub">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+          <h3>Healthcare Analytics Dashboard</h3>
+          <p>Analysed healthcare records to uncover trends in patient admissions, treatment outcomes, and cost drivers across departments.</p>
+          <div class="project-impact">
+            <span>Outcome</span>
+            Built dashboards tracking key hospital KPIs, highlighting readmission and cost patterns for decision support.
+          </div>
+          <ul class="project-stack">
+            <li>SQL</li><li>Python</li><li>Power BI</li><li>Excel</li>
+          </ul>
+        </article>
+
+      </div>
+
+      <div class="projects-more reveal">
+        <p><strong>Want to see more?</strong> I've completed 20+ analytics and business analysis projects in total — browse the full collection on GitHub.</p>
+        <a href="https://github.com/shreyathaware123" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.7.08-.7 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.75.4-1.27.73-1.56-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+          View all projects on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EDUCATION & CERTIFICATIONS (with Drive links)
+       ============================================================ -->
+  <section class="section" id="education">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Education &amp; Certifications</span>
+        <h2>Academic foundation &amp; credentials</h2>
+        <p>A computer science engineering degree, reinforced by focused analytics certifications.</p>
+      </div>
+
+      <div class="edu-grid">
+
+        <div class="reveal">
+          <h3 style="font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);font-weight:700;margin-bottom:22px;">Education</h3>
+
+          <div class="edu-item">
+            <span class="edu-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </span>
+            <div>
+              <h3>B.Tech — Computer Science &amp; Engineering</h3>
+              <p class="school">Priyadarshini Bhagwati College of Engineering</p>
+              <div class="meta">
+                <span>Jan 2020 — Jun 2024</span>
+                <span class="grade">CGPA 8.13 / 10</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <h3 style="font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);font-weight:700;margin-bottom:22px;">Certifications</h3>
+
+          <div class="cert-list">
+
+            <a href="https://drive.google.com/file/d/1h2dncfqr_OLhbP3e35iNCImSE_OxY3Xz/view" target="_blank" rel="noopener" class="cert">
+              <span class="cert-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+              </span>
+              <div>
+                <h4>Certificate Program on Data Analytics</h4>
+                <p>360DigiTMG · Pune</p>
+              </div>
+              <span class="cert-year">View</span>
+            </a>
+
+            <a href="https://drive.google.com/file/d/1QOxNuczeEwHGzh66ww1RPd652nZRi6xH/view" target="_blank" rel="noopener" class="cert">
+              <span class="cert-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+              </span>
+              <div>
+                <h4>Python for Data Science &amp; AI</h4>
+                <p>Coursera</p>
+              </div>
+              <span class="cert-year">View</span>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+       ============================================================ -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-inner">
+      <div class="contact-head reveal">
+        <span class="eyebrow">Contact</span>
+        <h2>Let's talk about the role you're hiring for</h2>
+        <p>
+          I'm actively interviewing for full-time Business Analyst and Analytics roles in
+          Bangalore — onsite, hybrid, remote, or work-from-home. The fastest way to reach me is
+          email; I usually reply immediately or in few hours
+        </p>
+      </div>
+
+      <div class="contact-actions reveal">
+        <a href="mailto:shreyathaware9@gmail.com?subject=Opportunity%20for%20Shreya%20Thaware" class="btn btn-light btn-lg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          shreyathaware9@gmail.com
+        </a>
+        <a href="./Shreya-Thaware-Resume.pdf" download class="btn btn-outline btn-lg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Resume
+        </a>
+      </div>
+
+      <dl class="contact-grid reveal">
+        <div class="contact-card">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          </span>
+          <div>
+            <dt>Email</dt>
+            <dd><a href="mailto:shreyathaware9@gmail.com">shreyathaware9@gmail.com</a></dd>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <div>
+            <dt>Phone</dt>
+            <dd><a href="tel:+919284597876">+91 92845 97876</a></dd>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM2.4 21h5.16V9H2.4v12zM9.9 9h4.95v1.64h.07c.69-1.2 2.37-2.46 4.88-2.46 5.22 0 6.18 3.2 6.18 7.36V21h-5.15v-5.9c0-1.4-.03-3.2-2.06-3.2-2.06 0-2.38 1.53-2.38 3.1V21H9.9V9z"/></svg>
+          </span>
+          <div>
+            <dt>LinkedIn</dt>
+            <dd><a href="https://www.linkedin.com/in/shreya-thaware/" target="_blank" rel="noopener">/in/shreya-thaware</a></dd>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.7.08-.7 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.75.4-1.27.73-1.56-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+          </span>
+          <div>
+            <dt>GitHub</dt>
+            <dd><a href="https://github.com/shreyathaware123" target="_blank" rel="noopener">/shreyathaware123</a></dd>
+          </div>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p>© <span id="year"></span> Shreya Thaware · Business Analyst · Performance Reporting &amp; KPI Dashboards</p>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  var nav = document.getElementById('nav');
+  function onScrollNav() {
+    if (window.scrollY > 12) nav.classList.add('is-scrolled');
+    else nav.classList.remove('is-scrolled');
+  }
+  onScrollNav();
+  window.addEventListener('scroll', onScrollNav, { passive: true });
+
+  var toggle = document.getElementById('navToggle');
+  var menu = document.getElementById('mobileMenu');
+
+  function closeMenu() {
+    menu.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
+  }
+  function openMenu() {
+    menu.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Close menu');
+  }
+
+  toggle.addEventListener('click', function () {
+    if (menu.classList.contains('is-open')) closeMenu();
+    else openMenu();
+  });
+
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 860) closeMenu();
+  });
+
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  var sections = navLinks
+    .map(function (link) {
+      var id = link.getAttribute('href');
+      return id && id.charAt(0) === '#' ? document.querySelector(id) : null;
+    })
+    .filter(Boolean);
+
+  function updateActiveLink() {
+    var scrollPos = window.scrollY + 140;
+    var currentId = null;
+
+    sections.forEach(function (sec) {
+      if (sec.offsetTop <= scrollPos) currentId = sec.id;
+    });
+
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 80) {
+      currentId = sections.length ? sections[sections.length - 1].id : currentId;
+    }
+
+    navLinks.forEach(function (link) {
+      link.classList.toggle('is-active', link.getAttribute('href') === '#' + currentId);
+    });
+  }
+
+  var spyTicking = false;
+  window.addEventListener('scroll', function () {
+    if (spyTicking) return;
+    spyTicking = true;
+    window.requestAnimationFrame(function () {
+      updateActiveLink();
+      spyTicking = false;
+    });
+  }, { passive: true });
+  updateActiveLink();
+
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var revealEls = document.querySelectorAll('.reveal');
+
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    revealEls.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(function (el) { io.observe(el); });
+  }
+
+  document.querySelectorAll('.projects-row, .skills-grid, .cert-list, .timeline').forEach(function (group) {
+    Array.prototype.forEach.call(group.children, function (child, i) {
+      if (child.classList.contains('reveal')) {
+        child.style.transitionDelay = Math.min(i * 70, 280) + 'ms';
+      }
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
