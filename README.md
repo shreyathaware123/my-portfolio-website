@@ -1,6 +1,6 @@
 # Shreya Thaware — Portfolio Website
 
-**Business Analyst/Analytics Role** · Performance Reporting · KPI Dashboards · Excel & Google Sheets
+**Business Analyst/Analytics Roles** · Performance Reporting · KPI Dashboards · Excel & Google Sheets
 
 📍 Based in Bangalore · Open to roles in Bangalore, Pune & Hyderabad · 💼 Immediate joiner · 🎓 B.Tech CSE
 
